@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Studio - Mockup Generator Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600;1,800;1,900&family=Outfit:wght@400;600;800;900&family=Poppins:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600;1,800;1,900&family=Roboto:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Grotesk:wght@400;600;700&family=Sora:wght@400;600;800&family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Oswald:wght@400;700&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Nunito:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Quicksand:wght@400;600;700&family=Abril+Fatface&family=Righteous&family=Kanit:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3/dist/dom-to-image-more.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        @keyframes gradient-x {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 5s ease infinite; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: none; border-radius: 10px; }
+
+        /* Custom range */
+        input[type="range"] {
+            -webkit-appearance: none; appearance: none;
+            height: 6px; border-radius: 999px; background: #e2e8f0; outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: #1e293b; cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.15s;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+        .ctrl-btn { transition: all 0.12s; }
+        .ctrl-btn:hover { background: #f1f5f9; transform: scale(1.03); }
+        .ctrl-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
+
+        /* Section collapsible */
+        .section-header { cursor: pointer; user-select: none; }
+        .section-body { transition: all 0.2s ease; overflow: hidden; }
+
+        /* Star rating */
+        .star { transition: transform 0.1s; }
+        .star:hover { transform: scale(1.3); }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 overflow-hidden">
+<div class="flex flex-col lg:flex-row h-screen">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SIDEBAR -->
+    <!-- ═══════════════════════════════════════════ -->
+    <aside class="w-full lg:w-[420px] bg-white border-r border-slate-200 p-5 flex flex-col gap-1 overflow-y-auto z-20 shadow-lg no-scrollbar">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-2">
+            <div>
+                <h1 class="text-xl font-black text-slate-800 flex items-center gap-2">
+                    <i data-lucide="sparkles" class="text-blue-500 fill-blue-500 w-5 h-5"></i> Pixel Studio
+                </h1>
+                <p class="text-[11px] text-slate-400 font-semibold mt-0.5">App Store Mockup Generator</p>
+            </div>
+            <button id="resetAllBtn" title="Resetear todo"
+                class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-600 flex items-center justify-center transition-all active:scale-90">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <!-- ═══ 1. TEXTO PRINCIPAL ═══ -->
+        <details class="group" open>
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="type" class="w-4 h-4"></i> Titular
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-3 pb-4">
+                <textarea id="titleInput"
+                    class="w-full p-3 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 outline-none transition-all text-center leading-tight h-20 bg-slate-50 font-semibold text-base resize-none"
+                    placeholder="Escribe el titular...">Busca&#10;como nunca</textarea>
+            </div>
+        </details>
+
+        <!-- ═══ 2. SUBTÍTULO ═══ -->
+        <details class="group" open>
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="text" class="w-4 h-4"></i> Subtítulo
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <input id="subtitleInput" type="text"
+                    class="w-full p-3 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 outline-none transition-all text-center bg-slate-50 text-sm"
+                    placeholder="Descripción corta (opcional)" value="">
+            </div>
+        </details>
+
+        <!-- ═══ 3. TIPOGRAFÍA ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="a-large-small" class="w-4 h-4"></i> Tipografía
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-3 pb-4">
+                <!-- Font grid -->
+                <div class="grid grid-cols-3 gap-1.5" id="fontSelector">
+                    <button data-font="Inter" class="ctrl-btn active px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Inter'">Inter</button>
+                    <button data-font="Outfit" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Outfit'">Outfit</button>
+                    <button data-font="Poppins" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Poppins'">Poppins</button>
+                    <button data-font="Sora" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Sora'">Sora</button>
+                    <button data-font="Montserrat" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Montserrat'">Montserrat</button>
+                    <button data-font="Raleway" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Raleway'">Raleway</button>
+                    <button data-font="Lato" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Lato'">Lato</button>
+                    <button data-font="Nunito" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Nunito'">Nunito</button>
+                    <button data-font="Quicksand" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Quicksand'">Quicksand</button>
+                    <button data-font="Roboto" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Roboto'">Roboto</button>
+                    <button data-font="DM Sans" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'DM Sans'">DM Sans</button>
+                    <button data-font="Space Grotesk" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Space Grotesk'">Space G.</button>
+                    <button data-font="Kanit" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Kanit'">Kanit</button>
+                    <button data-font="Playfair Display" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Playfair Display'">Playfair</button>
+                    <button data-font="Abril Fatface" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Abril Fatface'">Abril</button>
+                    <button data-font="Bebas Neue" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Bebas Neue'">Bebas</button>
+                    <button data-font="Oswald" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Oswald'">Oswald</button>
+                    <button data-font="Righteous" class="ctrl-btn px-2 py-2 rounded-xl text-[11px] font-bold border border-slate-200 text-center" style="font-family:'Righteous'">Righteous</button>
+                </div>
+                <!-- Bold / Italic / Uppercase -->
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400 shrink-0">ESTILO</span>
+                    <div class="flex gap-1 bg-slate-50 p-1 rounded-xl border border-slate-100">
+                        <button id="toggleBold" class="ctrl-btn active w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 font-black text-sm" title="Bold">B</button>
+                        <button id="toggleItalic" class="ctrl-btn w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 italic font-semibold text-sm" title="Italic"><em>I</em></button>
+                        <button id="toggleUppercase" class="ctrl-btn w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 text-[10px] font-bold tracking-wider" title="Mayúsculas">AA</button>
+                    </div>
+                    <div class="flex gap-1 bg-slate-50 p-1 rounded-xl border border-slate-100 ml-auto">
+                        <button data-align="left" class="ctrl-btn w-7 h-7 rounded-lg flex items-center justify-center text-slate-500"><i data-lucide="align-left" class="w-3 h-3"></i></button>
+                        <button data-align="center" class="ctrl-btn active w-7 h-7 rounded-lg flex items-center justify-center text-slate-500"><i data-lucide="align-center" class="w-3 h-3"></i></button>
+                        <button data-align="right" class="ctrl-btn w-7 h-7 rounded-lg flex items-center justify-center text-slate-500"><i data-lucide="align-right" class="w-3 h-3"></i></button>
+                    </div>
+                </div>
+                <!-- Font Weight -->
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">PESO</span><span id="fontWeightValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">900</span></div>
+                    <input type="range" id="fontWeightSlider" min="100" max="900" value="900" step="100" class="w-full">
+                </div>
+                <!-- Size -->
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">TAMAÑO</span><span id="fontSizeValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">60px</span></div>
+                    <input type="range" id="fontSizeSlider" min="20" max="100" value="60" class="w-full">
+                </div>
+                <!-- Letter Spacing -->
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">ESPACIADO</span><span id="letterSpacingValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">-2px</span></div>
+                    <input type="range" id="letterSpacingSlider" min="-6" max="12" value="-2" class="w-full">
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 4. COLOR DEL TEXTO ═══ -->
+        <details class="group" open>
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="paintbrush" class="w-4 h-4"></i> Color del Texto
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-3 pb-4">
+                <!-- Base text color -->
+                <div>
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1.5">COLOR BASE</span>
+                    <div class="flex items-center gap-2">
+                        <input type="color" id="titleColorPicker" value="#0f172a" class="w-10 h-9 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                        <div class="flex gap-1.5" id="titleColorPresets">
+                            <button data-color="#0f172a" class="w-7 h-7 rounded-full bg-slate-900 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-color="#ffffff" class="w-7 h-7 rounded-full bg-white border-2 border-slate-200 shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-color="#4285F4" class="w-7 h-7 rounded-full bg-[#4285F4] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-color="#EA4335" class="w-7 h-7 rounded-full bg-[#EA4335] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-color="#34A853" class="w-7 h-7 rounded-full bg-[#34A853] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-color="#f59e0b" class="w-7 h-7 rounded-full bg-amber-500 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Highlighted lines selector -->
+                <div>
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1.5">LÍNEAS DESTACADAS <span class="text-slate-300 font-normal">(clic para marcar)</span></span>
+                    <div id="lineSelector" class="space-y-1"></div>
+                </div>
+                <!-- Highlight mode toggle -->
+                <div>
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1.5">MODO</span>
+                    <div class="flex gap-1 bg-slate-50 p-1 rounded-xl border border-slate-100">
+                        <button id="modeGradient" class="ctrl-btn active flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 inline-block shrink-0"></span> Gradiente
+                        </button>
+                        <button id="modeSolid" class="ctrl-btn flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1.5">
+                            <span id="solidModePreview" class="w-3.5 h-3.5 rounded-full bg-blue-500 inline-block shrink-0"></span> Sólido
+                        </button>
+                    </div>
+                </div>
+                <!-- Gradient colors (shown when mode=gradient) -->
+                <div id="gradientControls">
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1.5">COLORES DEL GRADIENTE</span>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1.5">
+                            <input type="color" id="gradStartColor" value="#2563eb" class="w-9 h-8 cursor-pointer shadow-sm border-2 border-white rounded-lg">
+                            <span class="text-[9px] text-slate-400">→</span>
+                            <input type="color" id="gradMidColor" value="#9333ea" class="w-9 h-8 cursor-pointer shadow-sm border-2 border-white rounded-lg">
+                            <span class="text-[9px] text-slate-400">→</span>
+                            <input type="color" id="gradEndColor" value="#ec4899" class="w-9 h-8 cursor-pointer shadow-sm border-2 border-white rounded-lg">
+                        </div>
+                        <div class="w-full h-6 rounded-lg" id="gradientPreview" style="background: linear-gradient(to right, #2563eb, #9333ea, #ec4899)"></div>
+                    </div>
+                    <!-- Gradient presets -->
+                    <div class="flex gap-1.5 mt-2" id="gradientPresets">
+                        <button data-gs="#2563eb" data-gm="#9333ea" data-ge="#ec4899" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(to right,#2563eb,#9333ea,#ec4899)"></button>
+                        <button data-gs="#f59e0b" data-gm="#ef4444" data-ge="#ec4899" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(to right,#f59e0b,#ef4444,#ec4899)"></button>
+                        <button data-gs="#10b981" data-gm="#3b82f6" data-ge="#8b5cf6" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(to right,#10b981,#3b82f6,#8b5cf6)"></button>
+                        <button data-gs="#f97316" data-gm="#eab308" data-ge="#84cc16" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(to right,#f97316,#eab308,#84cc16)"></button>
+                    </div>
+                </div>
+                <!-- Solid color (shown when mode=solid) -->
+                <div id="solidControls" class="hidden">
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1.5">COLOR SÓLIDO DEL HIGHLIGHT</span>
+                    <div class="flex items-center gap-2">
+                        <input type="color" id="highlightSolidPicker" value="#4285F4" class="w-10 h-9 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                        <div class="flex gap-1.5" id="solidColorPresets">
+                            <button data-sc="#4285F4" class="w-7 h-7 rounded-full bg-[#4285F4] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-sc="#EA4335" class="w-7 h-7 rounded-full bg-[#EA4335] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-sc="#34A853" class="w-7 h-7 rounded-full bg-[#34A853] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-sc="#f59e0b" class="w-7 h-7 rounded-full bg-[#f59e0b] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-sc="#ec4899" class="w-7 h-7 rounded-full bg-[#ec4899] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-sc="#8b5cf6" class="w-7 h-7 rounded-full bg-[#8b5cf6] border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 5. POSICIÓN DEL TEXTO ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="layout" class="w-4 h-4"></i> Posición del Texto
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <div class="grid grid-cols-4 gap-1.5" id="textPositionSelector">
+                    <button data-position="top" class="ctrl-btn active px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="10" width="10" height="12" rx="2"/><line x1="8" y1="3" x2="16" y2="3"/><line x1="9" y1="6" x2="15" y2="6"/></svg>
+                        Arriba
+                    </button>
+                    <button data-position="bottom" class="ctrl-btn px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="12" rx="2"/><line x1="8" y1="18" x2="16" y2="18"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+                        Abajo
+                    </button>
+                    <button data-position="left" class="ctrl-btn px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="13" y="4" width="8" height="16" rx="2"/><line x1="2" y1="9" x2="9" y2="9"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="2" y1="15" x2="7" y2="15"/></svg>
+                        Izq.
+                    </button>
+                    <button data-position="overlay" class="ctrl-btn px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-5 h-5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12" x2="14" y2="12"/></svg>
+                        Sobre
+                    </button>
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 6. ROTACIÓN DEL DISPOSITIVO ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="rotate-3d" class="w-4 h-4"></i> Rotación del Dispositivo
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">ÁNGULO Z</span><span id="rotateZValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">0°</span></div>
+                    <input type="range" id="rotateZSlider" min="-30" max="30" value="0" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">PERSPECTIVA Y</span><span id="rotateYValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">0°</span></div>
+                    <input type="range" id="rotateYSlider" min="-40" max="40" value="0" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">PERSPECTIVA X</span><span id="rotateXValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">0°</span></div>
+                    <input type="range" id="rotateXSlider" min="-30" max="30" value="0" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">ESCALA</span><span id="scaleValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">100%</span></div>
+                    <input type="range" id="scaleSlider" min="50" max="130" value="100" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">POSICIÓN X</span><span id="posXValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">0px</span></div>
+                    <input type="range" id="posXSlider" min="-200" max="200" value="0" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">POSICIÓN Y</span><span id="posYValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">0px</span></div>
+                    <input type="range" id="posYSlider" min="-200" max="200" value="0" class="w-full">
+                </div>
+                <div class="flex gap-1.5 mt-1" id="rotationPresets">
+                    <button data-rz="0" data-ry="0" data-rx="0" class="ctrl-btn flex-1 px-2 py-2 rounded-xl text-[10px] font-bold border border-slate-200 text-center">Frontal</button>
+                    <button data-rz="-5" data-ry="15" data-rx="3" class="ctrl-btn flex-1 px-2 py-2 rounded-xl text-[10px] font-bold border border-slate-200 text-center">Tilt →</button>
+                    <button data-rz="5" data-ry="-15" data-rx="3" class="ctrl-btn flex-1 px-2 py-2 rounded-xl text-[10px] font-bold border border-slate-200 text-center">Tilt ←</button>
+                    <button data-rz="-8" data-ry="20" data-rx="5" class="ctrl-btn flex-1 px-2 py-2 rounded-xl text-[10px] font-bold border border-slate-200 text-center">3D</button>
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 7. BADGE / RATING ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="award" class="w-4 h-4"></i> Badge & Rating
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-3 pb-4">
+                <!-- Star rating -->
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400 shrink-0">ESTRELLAS</span>
+                    <div class="flex gap-0.5" id="starRating">
+                        <button data-star="1" class="star text-2xl text-amber-400 cursor-pointer">★</button>
+                        <button data-star="2" class="star text-2xl text-amber-400 cursor-pointer">★</button>
+                        <button data-star="3" class="star text-2xl text-amber-400 cursor-pointer">★</button>
+                        <button data-star="4" class="star text-2xl text-amber-400 cursor-pointer">★</button>
+                        <button data-star="5" class="star text-2xl text-amber-400 cursor-pointer">★</button>
+                    </div>
+                    <button id="clearStars" class="text-[10px] font-bold text-slate-400 hover:text-rose-500 ml-auto">Quitar</button>
+                </div>
+                <!-- Badge text -->
+                <input id="badgeInput" type="text"
+                    class="w-full p-2.5 border-2 border-slate-100 rounded-xl focus:border-blue-500 outline-none transition-all text-center bg-slate-50 text-xs font-bold"
+                    placeholder="Texto del badge (ej: #1 Free App)" value="">
+            </div>
+        </details>
+
+        <!-- ═══ 8. REVIEW / TESTIMONIAL ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> Reseña / Testimonial
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <textarea id="reviewInput"
+                    class="w-full p-2.5 border-2 border-slate-100 rounded-xl focus:border-blue-500 outline-none transition-all text-center bg-slate-50 text-xs h-14 resize-none"
+                    placeholder='"Esta app me cambió la vida. 100% recomendada."'></textarea>
+            </div>
+        </details>
+
+        <!-- ═══ 9. CAPTURA ═══ -->
+        <details class="group" open>
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="image" class="w-4 h-4"></i> Captura de Pantalla
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <label class="cursor-pointer group block">
+                    <input type="file" id="imageInput" accept="image/*" class="hidden">
+                    <div class="border-2 border-dashed border-slate-200 rounded-2xl p-4 group-hover:bg-blue-50 group-hover:border-blue-300 transition-all text-center bg-slate-50/50">
+                        <i data-lucide="upload" class="mx-auto text-slate-300 group-hover:text-blue-500 mb-1 transition-transform group-hover:-translate-y-1 w-5 h-5"></i>
+                        <span class="text-[11px] font-bold text-slate-500 group-hover:text-blue-600">SUBIR CAPTURA</span>
+                    </div>
+                </label>
+                <button id="removeImageBtn"
+                    class="hidden w-full py-2 bg-rose-50 text-rose-600 rounded-xl font-bold text-[11px] flex items-center justify-center gap-2 hover:bg-rose-100 transition-all active:scale-[0.97] border border-rose-200">
+                    <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> QUITAR IMAGEN
+                </button>
+            </div>
+        </details>
+
+        <!-- ═══ 10. AURA ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="sun" class="w-4 h-4"></i> Aura & Colores
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-3 pb-4">
+                <div class="grid grid-cols-4 gap-2" id="colorControls">
+                    <input type="color" value="#4285F4" class="w-full h-10 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                    <input type="color" value="#EA4335" class="w-full h-10 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                    <input type="color" value="#FBBC05" class="w-full h-10 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                    <input type="color" value="#34A853" class="w-full h-10 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">OPACIDAD</span><span id="auraOpacityValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">20%</span></div>
+                    <input type="range" id="auraOpacitySlider" min="0" max="60" value="20" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">DIFUSIÓN</span><span id="auraBlurValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">80px</span></div>
+                    <input type="range" id="auraBlurSlider" min="20" max="160" value="80" class="w-full">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">TAMAÑO AURA</span><span id="auraSizeValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">64px</span></div>
+                    <input type="range" id="auraSizeSlider" min="16" max="128" value="64" class="w-full">
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 11. FONDO ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="frame" class="w-4 h-4"></i> Fondo del Mockup
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <div class="flex items-center gap-2">
+                    <input type="color" id="bgColorPicker" value="#ffffff" class="w-10 h-9 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                    <div class="flex gap-1.5" id="bgPresets">
+                        <button data-bg="#ffffff" class="w-7 h-7 rounded-full bg-white border-2 border-slate-200 shadow-sm hover:scale-110 transition-transform"></button>
+                        <button data-bg="#0f172a" class="w-7 h-7 rounded-full bg-slate-900 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        <button data-bg="#7c3aed" class="w-7 h-7 rounded-full bg-violet-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        <button data-bg="#059669" class="w-7 h-7 rounded-full bg-emerald-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        <button data-bg="#fef3c7" class="w-7 h-7 rounded-full bg-amber-100 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        <button data-bg="#fce7f3" class="w-7 h-7 rounded-full bg-pink-100 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        <button data-bg="#f0f9ff" class="w-7 h-7 rounded-full bg-sky-50 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- EXPORT -->
+        <button id="downloadBtn"
+            class="mt-4 w-full py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all active:scale-[0.97] shadow-xl shadow-slate-200 shrink-0">
+            <i data-lucide="download" class="w-5 h-5"></i> Exportar Diseño
+        </button>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CANVAS -->
+    <!-- ═══════════════════════════════════════════ -->
+    <main class="flex-1 bg-[#fcfcfc] flex items-center justify-center p-6 relative overflow-y-auto">
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style="background-image: radial-gradient(#475569 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+        <div id="mockupContainer"
+            class="relative bg-white aspect-[9/16] h-[min(85vh,800px)] flex flex-col items-center justify-center rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] z-10 transition-all duration-500 overflow-hidden p-8"
+            data-layout="top">
+
+            <!-- ═══ TEXT ZONE (top/bottom position) ═══ -->
+            <div id="textZone" class="text-center mb-12 select-none max-w-lg w-full order-1">
+                <!-- Badge -->
+                <div id="badgeDisplay" class="hidden mb-3">
+                    <span class="inline-block bg-slate-900/90 text-white text-[11px] font-bold px-4 py-1.5 rounded-full tracking-wide backdrop-blur-sm"></span>
+                </div>
+                <!-- Stars -->
+                <div id="starsDisplay" class="hidden mb-2">
+                    <span class="text-amber-400 text-2xl tracking-widest"></span>
+                </div>
+                <!-- Title -->
+                <h2 id="displayTitle"
+                    class="text-5xl md:text-6xl font-[900] text-slate-900 leading-[1.05] tracking-tighter whitespace-pre-wrap"
+                    style="font-family:'Inter'"></h2>
+                <!-- Subtitle -->
+                <p id="displaySubtitle" class="hidden text-lg text-slate-500 font-medium mt-3 leading-snug"></p>
+                <!-- Review -->
+                <div id="reviewDisplay" class="hidden mt-5">
+                    <div class="inline-block bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl px-5 py-3 shadow-sm max-w-sm">
+                        <p class="text-sm text-slate-600 italic leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ DEVICE ZONE ═══ -->
+            <div id="deviceZone" class="relative w-full max-w-[280px] aspect-[9/19.5] mx-auto order-2" style="perspective: 1200px;">
+                <div id="deviceWrapper" class="w-full h-full transition-transform duration-300" style="transform-style: preserve-3d;">
+
+                    <!-- Aura -->
+                    <div id="auraEffect"
+                        class="absolute -inset-16 blur-[80px] opacity-20 transition-all duration-300 pointer-events-none"
+                        style="background: radial-gradient(circle, #4285F4, #EA4335, #FBBC05, transparent);"></div>
+
+                    <!-- Border (outer gradient frame) -->
+                    <div id="deviceBorder"
+                        class="absolute -inset-[2px] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.3)]"
+                        style="background: linear-gradient(165deg, #4285F4, #EA4335, #FBBC05, #34A853); border-radius: 14%/7%;">
+                        <!-- Phone body -->
+                        <div class="absolute inset-[2px] bg-[#1a1a1a] overflow-hidden" style="border-radius: 13.5%/6.8%;">
+                            <!-- Screen area -->
+                            <div class="absolute inset-[1.8%] bg-white overflow-hidden" style="border-radius: 12%/6%;">
+                                <img id="screenImage"
+                                    src="https://placehold.co/1344x2992/ffffff/64748b?text=Captura+Pixel+Pro"
+                                    alt="Pixel Screen" class="w-full h-full object-cover select-none">
+                                <!-- Dynamic Island / Punchhole -->
+                                <div class="absolute left-1/2 -translate-x-1/2 bg-black rounded-full z-30" style="top: 1.2%; width: 5.5%; aspect-ratio: 1; box-shadow: 0 0 0 1px rgba(0,0,0,0.05);"></div>
+                                <!-- Nav bar -->
+                                <div class="absolute left-1/2 -translate-x-1/2 bg-black/15 rounded-full" style="bottom: 1.2%; width: 30%; height: 0.5%;"></div>
+                            </div>
+                            <!-- Glass reflection -->
+                            <div class="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.06]" style="border-radius: 13.5%/6.8%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    lucide.createIcons();
+
+    // ═══ REFS ═══
+    const $ = id => document.getElementById(id);
+    const titleInput = $('titleInput');
+    const subtitleInput = $('subtitleInput');
+    const displayTitle = $('displayTitle');
+    const displaySubtitle = $('displaySubtitle');
+    const imageInput = $('imageInput');
+    const screenImage = $('screenImage');
+    const colorInputs = document.querySelectorAll('#colorControls input');
+    const auraEffect = $('auraEffect');
+    const deviceBorder = $('deviceBorder');
+    const downloadBtn = $('downloadBtn');
+    const removeImageBtn = $('removeImageBtn');
+    const mockupContainer = $('mockupContainer');
+    const deviceWrapper = $('deviceWrapper');
+    const deviceZone = $('deviceZone');
+    const textZone = $('textZone');
+    const badgeDisplay = $('badgeDisplay');
+    const starsDisplay = $('starsDisplay');
+    const reviewDisplay = $('reviewDisplay');
+
+    const auraOpacitySlider = $('auraOpacitySlider');
+    const auraBlurSlider = $('auraBlurSlider');
+    const auraSizeSlider = $('auraSizeSlider');
+    const fontSizeSlider = $('fontSizeSlider');
+    const rotateZSlider = $('rotateZSlider');
+    const rotateYSlider = $('rotateYSlider');
+    const rotateXSlider = $('rotateXSlider');
+    const scaleSlider = $('scaleSlider');
+    const titleColorPicker = $('titleColorPicker');
+    const bgColorPicker = $('bgColorPicker');
+
+    const DEFAULT_IMAGE = 'https://placehold.co/1344x2992/ffffff/64748b?text=Captura+Pixel+Pro';
+    let currentFont = 'Inter';
+    let currentAlign = 'center';
+    let currentTitleColor = '#0f172a';
+    let currentStars = 0;
+    let currentPosition = 'top';
+    let isBold = true;
+    let isItalic = false;
+    let isUppercase = false;
+
+    // Highlight state
+    let highlightedLines = new Set([0]);
+    let highlightMode = 'gradient'; // 'gradient' | 'solid'
+    let highlightSolidColor = '#4285F4';
+    let gradientStart = '#2563eb';
+    let gradientMid = '#9333ea';
+    let gradientEnd = '#ec4899';
+
+    const fontWeightSlider = $('fontWeightSlider');
+    const letterSpacingSlider = $('letterSpacingSlider');
+
+    // ═══ TEXT ═══
+    function updateText() {
+        const lines = titleInput.value.split('\n');
+        const fontSize = fontSizeSlider.value;
+        const fontWeight = fontWeightSlider.value;
+        const letterSpacing = letterSpacingSlider.value;
+
+        displayTitle.style.fontFamily = `'${currentFont}', sans-serif`;
+        displayTitle.style.fontSize = `${fontSize}px`;
+        displayTitle.style.fontWeight = fontWeight;
+        displayTitle.style.fontStyle = isItalic ? 'italic' : 'normal';
+        displayTitle.style.textTransform = isUppercase ? 'uppercase' : 'none';
+        displayTitle.style.letterSpacing = `${letterSpacing}px`;
+        displayTitle.style.textAlign = currentAlign;
+
+        displayTitle.innerHTML = lines.map((line, idx) => {
+            if (highlightedLines.has(idx)) {
+                if (highlightMode === 'gradient') {
+                    return `<span class="block text-transparent bg-clip-text animate-gradient-x" style="background-image:linear-gradient(to right,${gradientStart},${gradientMid},${gradientEnd});-webkit-background-clip:text;background-size:200% 200%;">${line}</span>`;
+                } else {
+                    return `<span class="block" style="color:${highlightSolidColor}">${line}</span>`;
+                }
+            }
+            return `<span class="block" style="color:${currentTitleColor}">${line}</span>`;
+        }).join('');
+
+        $('fontSizeValue').textContent = `${fontSize}px`;
+        $('fontWeightValue').textContent = fontWeight;
+        $('letterSpacingValue').textContent = `${letterSpacing}px`;
+
+        renderLineSelector();
+    }
+
+    // ═══ LINE SELECTOR ═══
+    function renderLineSelector() {
+        const container = $('lineSelector');
+        const lines = titleInput.value.split('\n');
+        container.innerHTML = lines.map((line, idx) => {
+            const isActive = highlightedLines.has(idx);
+            const label = line.trim() || `(línea ${idx + 1})`;
+            return `<button data-line="${idx}" class="w-full text-left px-3 py-2 rounded-xl text-[11px] font-semibold border-2 transition-all ${
+                isActive
+                    ? 'border-blue-400 bg-blue-50 text-blue-700 shadow-sm'
+                    : 'border-slate-100 bg-slate-50/50 text-slate-500 hover:bg-slate-100'
+            }">${isActive ? '<span class="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1.5"></span>' : '<span class="inline-block w-2 h-2 rounded-full bg-slate-300 mr-1.5"></span>'}${label}</button>`;
+        }).join('');
+    }
+
+    $('lineSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-line]');
+        if (!btn) return;
+        const idx = parseInt(btn.dataset.line);
+        if (highlightedLines.has(idx)) {
+            highlightedLines.delete(idx);
+        } else {
+            highlightedLines.add(idx);
+        }
+        updateText();
+    });
+
+    // ═══ HIGHLIGHT MODE TOGGLE ═══
+    $('modeGradient').addEventListener('click', () => {
+        highlightMode = 'gradient';
+        $('modeGradient').classList.add('active');
+        $('modeSolid').classList.remove('active');
+        $('gradientControls').classList.remove('hidden');
+        $('solidControls').classList.add('hidden');
+        updateText();
+    });
+    $('modeSolid').addEventListener('click', () => {
+        highlightMode = 'solid';
+        $('modeSolid').classList.add('active');
+        $('modeGradient').classList.remove('active');
+        $('solidControls').classList.remove('hidden');
+        $('gradientControls').classList.add('hidden');
+        updateText();
+    });
+
+    // ═══ GRADIENT COLORS ═══
+    function updateGradientPreview() {
+        $('gradientPreview').style.background = `linear-gradient(to right, ${gradientStart}, ${gradientMid}, ${gradientEnd})`;
+    }
+    $('gradStartColor').addEventListener('input', (e) => { gradientStart = e.target.value; updateGradientPreview(); updateText(); });
+    $('gradMidColor').addEventListener('input', (e) => { gradientMid = e.target.value; updateGradientPreview(); updateText(); });
+    $('gradEndColor').addEventListener('input', (e) => { gradientEnd = e.target.value; updateGradientPreview(); updateText(); });
+
+    $('gradientPresets').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-gs]');
+        if (!btn) return;
+        gradientStart = btn.dataset.gs;
+        gradientMid = btn.dataset.gm;
+        gradientEnd = btn.dataset.ge;
+        $('gradStartColor').value = gradientStart;
+        $('gradMidColor').value = gradientMid;
+        $('gradEndColor').value = gradientEnd;
+        updateGradientPreview();
+        updateText();
+    });
+
+    // ═══ SOLID HIGHLIGHT COLOR ═══
+    $('highlightSolidPicker').addEventListener('input', (e) => {
+        highlightSolidColor = e.target.value;
+        $('solidModePreview').style.backgroundColor = highlightSolidColor;
+        updateText();
+    });
+    $('solidColorPresets').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-sc]');
+        if (!btn) return;
+        highlightSolidColor = btn.dataset.sc;
+        $('highlightSolidPicker').value = highlightSolidColor;
+        $('solidModePreview').style.backgroundColor = highlightSolidColor;
+        updateText();
+    });
+
+    // ═══ BOLD / ITALIC / UPPERCASE TOGGLES ═══
+    $('toggleBold').addEventListener('click', () => {
+        isBold = !isBold;
+        $('toggleBold').classList.toggle('active', isBold);
+        fontWeightSlider.value = isBold ? 900 : 400;
+        updateText();
+    });
+    $('toggleItalic').addEventListener('click', () => {
+        isItalic = !isItalic;
+        $('toggleItalic').classList.toggle('active', isItalic);
+        updateText();
+    });
+    $('toggleUppercase').addEventListener('click', () => {
+        isUppercase = !isUppercase;
+        $('toggleUppercase').classList.toggle('active', isUppercase);
+        updateText();
+    });
+
+    fontWeightSlider.addEventListener('input', () => {
+        isBold = parseInt(fontWeightSlider.value) >= 700;
+        $('toggleBold').classList.toggle('active', isBold);
+        updateText();
+    });
+    letterSpacingSlider.addEventListener('input', updateText);
+
+    // ═══ SUBTITLE ═══
+    function updateSubtitle() {
+        const val = subtitleInput.value.trim();
+        if (val) {
+            displaySubtitle.classList.remove('hidden');
+            displaySubtitle.textContent = val;
+            displaySubtitle.style.color = currentTitleColor === '#0f172a' ? '#64748b' : currentTitleColor + 'aa';
+            displaySubtitle.style.textAlign = currentAlign;
+            displaySubtitle.style.fontFamily = `'${currentFont}', sans-serif`;
+            displaySubtitle.style.fontStyle = isItalic ? 'italic' : 'normal';
+        } else {
+            displaySubtitle.classList.add('hidden');
+        }
+    }
+    subtitleInput.addEventListener('input', updateSubtitle);
+
+    // ═══ BADGE ═══
+    function updateBadge() {
+        const val = $('badgeInput').value.trim();
+        if (val) {
+            badgeDisplay.classList.remove('hidden');
+            badgeDisplay.querySelector('span').textContent = val;
+        } else {
+            badgeDisplay.classList.add('hidden');
+        }
+    }
+    $('badgeInput').addEventListener('input', updateBadge);
+
+    // ═══ STARS ═══
+    function updateStarsDisplay() {
+        if (currentStars > 0) {
+            starsDisplay.classList.remove('hidden');
+            starsDisplay.querySelector('span').textContent = '★'.repeat(currentStars) + '☆'.repeat(5 - currentStars);
+        } else {
+            starsDisplay.classList.add('hidden');
+        }
+        // Update sidebar stars visually
+        document.querySelectorAll('#starRating button[data-star]').forEach(btn => {
+            const s = parseInt(btn.dataset.star);
+            btn.textContent = s <= currentStars ? '★' : '☆';
+            btn.classList.toggle('text-amber-400', s <= currentStars);
+            btn.classList.toggle('text-slate-300', s > currentStars);
+        });
+    }
+    $('starRating').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-star]');
+        if (!btn) return;
+        currentStars = parseInt(btn.dataset.star);
+        updateStarsDisplay();
+    });
+    $('clearStars').addEventListener('click', () => { currentStars = 0; updateStarsDisplay(); });
+
+    // ═══ REVIEW ═══
+    function updateReview() {
+        const val = $('reviewInput').value.trim();
+        if (val) {
+            reviewDisplay.classList.remove('hidden');
+            reviewDisplay.querySelector('p').textContent = val;
+        } else {
+            reviewDisplay.classList.add('hidden');
+        }
+    }
+    $('reviewInput').addEventListener('input', updateReview);
+
+    // ═══ POSITION ═══
+    $('textPositionSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-position]');
+        if (!btn) return;
+        currentPosition = btn.dataset.position;
+        document.querySelectorAll('#textPositionSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyLayout();
+    });
+
+    function applyLayout() {
+        // Reset classes — keep 9:16 aspect ratio
+        mockupContainer.className = 'relative bg-white aspect-[9/16] h-[min(85vh,800px)] flex items-center justify-center rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] z-10 transition-all duration-500 overflow-hidden p-8';
+
+        textZone.className = 'select-none w-full';
+        textZone.style.textAlign = currentAlign;
+
+        switch(currentPosition) {
+            case 'top':
+                mockupContainer.classList.add('flex-col');
+                textZone.classList.add('text-center', 'mb-6', 'max-w-xs', 'mx-auto', 'order-1');
+                deviceZone.classList.remove('order-1');
+                deviceZone.classList.add('order-2');
+                deviceZone.style.maxWidth = '220px';
+                break;
+            case 'bottom':
+                mockupContainer.classList.add('flex-col');
+                textZone.classList.add('text-center', 'mt-6', 'max-w-xs', 'mx-auto', 'order-2');
+                textZone.classList.remove('mb-6');
+                deviceZone.classList.remove('order-2');
+                deviceZone.classList.add('order-1');
+                deviceZone.style.maxWidth = '220px';
+                break;
+            case 'left':
+                mockupContainer.classList.add('flex-row', 'gap-6');
+                textZone.classList.add('text-left', 'max-w-[45%]', 'order-1', 'flex-shrink-0');
+                textZone.style.textAlign = 'left';
+                deviceZone.classList.remove('order-1');
+                deviceZone.classList.add('order-2');
+                deviceZone.style.maxWidth = '200px';
+                break;
+            case 'overlay':
+                mockupContainer.classList.add('flex-col');
+                textZone.classList.add('text-center', 'mb-0', 'max-w-xs', 'mx-auto', 'order-1', 'relative', 'z-20');
+                textZone.style.marginBottom = '-30px';
+                deviceZone.classList.remove('order-1');
+                deviceZone.classList.add('order-2');
+                deviceZone.style.maxWidth = '220px';
+                break;
+        }
+        // Re-apply bg color
+        mockupContainer.style.backgroundColor = bgColorPicker.value;
+    }
+
+    // ═══ ROTATION ═══
+    const posXSlider = $('posXSlider');
+    const posYSlider = $('posYSlider');
+
+    function updateRotation() {
+        const rz = rotateZSlider.value;
+        const ry = rotateYSlider.value;
+        const rx = rotateXSlider.value;
+        const sc = scaleSlider.value / 100;
+        const px = posXSlider.value;
+        const py = posYSlider.value;
+        deviceWrapper.style.transform = `translate(${px}px, ${py}px) rotateZ(${rz}deg) rotateY(${ry}deg) rotateX(${rx}deg) scale(${sc})`;
+        $('rotateZValue').textContent = `${rz}°`;
+        $('rotateYValue').textContent = `${ry}°`;
+        $('rotateXValue').textContent = `${rx}°`;
+        $('scaleValue').textContent = `${scaleSlider.value}%`;
+        $('posXValue').textContent = `${px}px`;
+        $('posYValue').textContent = `${py}px`;
+    }
+    rotateZSlider.addEventListener('input', updateRotation);
+    rotateYSlider.addEventListener('input', updateRotation);
+    rotateXSlider.addEventListener('input', updateRotation);
+    scaleSlider.addEventListener('input', updateRotation);
+    posXSlider.addEventListener('input', updateRotation);
+    posYSlider.addEventListener('input', updateRotation);
+
+    // Rotation presets
+    $('rotationPresets').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-rz]');
+        if (!btn) return;
+        rotateZSlider.value = btn.dataset.rz;
+        rotateYSlider.value = btn.dataset.ry;
+        rotateXSlider.value = btn.dataset.rx;
+        updateRotation();
+    });
+
+    // ═══ IMAGE ═══
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                screenImage.src = ev.target.result;
+                removeImageBtn.classList.remove('hidden');
+                removeImageBtn.classList.add('flex');
+                lucide.createIcons();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    removeImageBtn.addEventListener('click', () => {
+        screenImage.src = DEFAULT_IMAGE;
+        imageInput.value = '';
+        removeImageBtn.classList.add('hidden');
+        removeImageBtn.classList.remove('flex');
+    });
+
+    // ═══ AURA ═══
+    function updateColors() {
+        const colors = Array.from(colorInputs).map(i => i.value);
+        auraEffect.style.background = `radial-gradient(circle, ${colors[0]}, ${colors[1]}, ${colors[2]}, transparent)`;
+        deviceBorder.style.background = `linear-gradient(165deg, ${colors.join(',')})`;
+    }
+    function updateAura() {
+        const op = auraOpacitySlider.value / 100;
+        const bl = auraBlurSlider.value;
+        const sz = auraSizeSlider.value;
+        auraEffect.style.opacity = op;
+        auraEffect.style.filter = `blur(${bl}px)`;
+        auraEffect.style.inset = `-${sz}px`;
+        $('auraOpacityValue').textContent = `${auraOpacitySlider.value}%`;
+        $('auraBlurValue').textContent = `${bl}px`;
+        $('auraSizeValue').textContent = `${sz}px`;
+    }
+    auraOpacitySlider.addEventListener('input', updateAura);
+    auraBlurSlider.addEventListener('input', updateAura);
+    auraSizeSlider.addEventListener('input', updateAura);
+    colorInputs.forEach(i => i.addEventListener('input', updateColors));
+
+    // ═══ FONT ═══
+    $('fontSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-font]');
+        if (!btn) return;
+        currentFont = btn.dataset.font;
+        document.querySelectorAll('#fontSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateText();
+    });
+    fontSizeSlider.addEventListener('input', updateText);
+
+    // Alignment
+    document.querySelectorAll('[data-align]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentAlign = btn.dataset.align;
+            document.querySelectorAll('[data-align]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateText();
+            updateSubtitle();
+            if (currentPosition !== 'left') applyLayout();
+        });
+    });
+
+    // ═══ TITLE COLOR ═══
+    titleColorPicker.addEventListener('input', (e) => { currentTitleColor = e.target.value; updateText(); updateSubtitle(); });
+    $('titleColorPresets').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-color]');
+        if (!btn) return;
+        currentTitleColor = btn.dataset.color;
+        titleColorPicker.value = btn.dataset.color;
+        updateText(); updateSubtitle();
+    });
+
+    // ═══ BG COLOR ═══
+    bgColorPicker.addEventListener('input', (e) => { mockupContainer.style.backgroundColor = e.target.value; });
+    $('bgPresets').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-bg]');
+        if (!btn) return;
+        mockupContainer.style.backgroundColor = btn.dataset.bg;
+        bgColorPicker.value = btn.dataset.bg;
+    });
+
+    // ═══ EXPORT ═══
+    downloadBtn.addEventListener('click', async () => {
+        const orig = downloadBtn.innerHTML;
+        downloadBtn.disabled = true;
+        downloadBtn.innerHTML = `<div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Exportando...`;
+
+        // Save current states that break export
+        const savedTransform = deviceWrapper.style.transform;
+        const savedOverflow = mockupContainer.style.overflow;
+
+        try {
+            // Temporarily adjust for clean capture
+            mockupContainer.style.overflow = 'hidden';
+
+            const dataUrl = await domtoimage.toPng(mockupContainer, {
+                quality: 1,
+                width: mockupContainer.offsetWidth * 2,
+                height: mockupContainer.offsetHeight * 2,
+                style: {
+                    transform: 'scale(2)',
+                    transformOrigin: 'top left',
+                },
+            });
+            const link = document.createElement('a');
+            link.download = `mockup-${Date.now()}.png`;
+            link.href = dataUrl;
+            link.click();
+        } catch (err) {
+            console.error('Export error:', err);
+            alert('Error al exportar. Intenta de nuevo.');
+        } finally {
+            // Restore
+            mockupContainer.style.overflow = savedOverflow;
+            downloadBtn.disabled = false;
+            downloadBtn.innerHTML = orig;
+            lucide.createIcons();
+        }
+    });
+
+    // ═══ RESET ═══
+    $('resetAllBtn').addEventListener('click', () => {
+        titleInput.value = 'Busca\ncomo nunca';
+        subtitleInput.value = '';
+        $('badgeInput').value = '';
+        $('reviewInput').value = '';
+        currentFont = 'Inter'; currentAlign = 'center'; currentTitleColor = '#0f172a'; currentStars = 0; currentPosition = 'top';
+        isBold = true; isItalic = false; isUppercase = false;
+        highlightedLines = new Set([0]); highlightMode = 'gradient';
+        highlightSolidColor = '#4285F4'; gradientStart = '#2563eb'; gradientMid = '#9333ea'; gradientEnd = '#ec4899';
+        $('modeGradient').classList.add('active'); $('modeSolid').classList.remove('active');
+        $('gradientControls').classList.remove('hidden'); $('solidControls').classList.add('hidden');
+        $('gradStartColor').value = '#2563eb'; $('gradMidColor').value = '#9333ea'; $('gradEndColor').value = '#ec4899';
+        $('highlightSolidPicker').value = '#4285F4'; $('solidModePreview').style.backgroundColor = '#4285F4';
+        updateGradientPreview();
+        fontWeightSlider.value = 900; letterSpacingSlider.value = -2;
+        $('toggleBold').classList.add('active'); $('toggleItalic').classList.remove('active'); $('toggleUppercase').classList.remove('active');
+        titleColorPicker.value = '#0f172a';
+        fontSizeSlider.value = 60;
+        rotateZSlider.value = 0; rotateYSlider.value = 0; rotateXSlider.value = 0; scaleSlider.value = 100;
+        posXSlider.value = 0; posYSlider.value = 0;
+        screenImage.src = DEFAULT_IMAGE; imageInput.value = '';
+        removeImageBtn.classList.add('hidden'); removeImageBtn.classList.remove('flex');
+        const dc = ['#4285F4','#EA4335','#FBBC05','#34A853'];
+        colorInputs.forEach((i,idx) => i.value = dc[idx]);
+        auraOpacitySlider.value = 20; auraBlurSlider.value = 80; auraSizeSlider.value = 64;
+        bgColorPicker.value = '#ffffff';
+
+        document.querySelectorAll('#fontSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-font="Inter"]').classList.add('active');
+        document.querySelectorAll('[data-align]').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-align="center"]').classList.add('active');
+        document.querySelectorAll('#textPositionSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-position="top"]').classList.add('active');
+
+        updateText(); updateSubtitle(); updateBadge(); updateReview(); updateStarsDisplay();
+        updateColors(); updateAura(); updateRotation(); applyLayout();
+    });
+
+    // ═══ INIT ═══
+    titleInput.addEventListener('input', updateText);
+    updateText();
+    updateSubtitle();
+    updateColors();
+    updateAura();
+    updateRotation();
+    updateStarsDisplay();
+    applyLayout();
+</script>
+</body>
+</html>
