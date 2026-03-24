@@ -159,6 +159,36 @@
                     <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">ESPACIADO</span><span id="letterSpacingValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">-2px</span></div>
                     <input type="range" id="letterSpacingSlider" min="-6" max="12" value="-2" class="w-full">
                 </div>
+                <!-- Line Height -->
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">INTERLINEADO</span><span id="lineHeightValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">1.05</span></div>
+                    <input type="range" id="lineHeightSlider" min="70" max="180" value="105" class="w-full">
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 3b. TEXT SHADOW ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="eclipse" class="w-4 h-4"></i> Sombra de Texto
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <div class="flex gap-1 bg-slate-50 p-1 rounded-xl border border-slate-100">
+                    <button id="txtShadowOff" class="ctrl-btn active flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center">Ninguna</button>
+                    <button id="txtShadowOn" class="ctrl-btn flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center">Sombra</button>
+                    <button id="txtGlowOn" class="ctrl-btn flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center">Glow</button>
+                </div>
+                <div id="txtShadowControls" class="hidden space-y-1.5">
+                    <div class="space-y-1">
+                        <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">BLUR</span><span id="txtShadowBlurVal" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">4px</span></div>
+                        <input type="range" id="txtShadowBlurSlider" min="0" max="30" value="4" class="w-full">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-bold text-slate-400">COLOR</span>
+                        <input type="color" id="txtShadowColor" value="#000000" class="w-8 h-7 cursor-pointer shadow-sm border-2 border-white rounded-lg">
+                    </div>
+                </div>
             </div>
         </details>
 
@@ -382,16 +412,16 @@
                     <input type="color" value="#34A853" class="w-full h-10 cursor-pointer shadow-sm border-2 border-white rounded-xl">
                 </div>
                 <div class="space-y-1.5">
-                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">OPACIDAD</span><span id="auraOpacityValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">20%</span></div>
-                    <input type="range" id="auraOpacitySlider" min="0" max="60" value="20" class="w-full">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">OPACIDAD</span><span id="auraOpacityValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">17%</span></div>
+                    <input type="range" id="auraOpacitySlider" min="0" max="60" value="17" class="w-full">
                 </div>
                 <div class="space-y-1.5">
-                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">DIFUSIÓN</span><span id="auraBlurValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">80px</span></div>
-                    <input type="range" id="auraBlurSlider" min="20" max="160" value="80" class="w-full">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">DIFUSIÓN</span><span id="auraBlurValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">20px</span></div>
+                    <input type="range" id="auraBlurSlider" min="20" max="160" value="20" class="w-full">
                 </div>
                 <div class="space-y-1.5">
-                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">TAMAÑO AURA</span><span id="auraSizeValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">64px</span></div>
-                    <input type="range" id="auraSizeSlider" min="16" max="128" value="64" class="w-full">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">TAMAÑO AURA</span><span id="auraSizeValue" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">23px</span></div>
+                    <input type="range" id="auraSizeSlider" min="16" max="128" value="23" class="w-full">
                 </div>
             </div>
         </details>
@@ -402,27 +432,237 @@
                 <i data-lucide="frame" class="w-4 h-4"></i> Fondo del Mockup
                 <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
             </summary>
-            <div class="section-body space-y-2 pb-4">
-                <div class="flex items-center gap-2">
-                    <input type="color" id="bgColorPicker" value="#ffffff" class="w-10 h-9 cursor-pointer shadow-sm border-2 border-white rounded-xl">
-                    <div class="flex gap-1.5" id="bgPresets">
-                        <button data-bg="#ffffff" class="w-7 h-7 rounded-full bg-white border-2 border-slate-200 shadow-sm hover:scale-110 transition-transform"></button>
-                        <button data-bg="#0f172a" class="w-7 h-7 rounded-full bg-slate-900 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
-                        <button data-bg="#7c3aed" class="w-7 h-7 rounded-full bg-violet-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
-                        <button data-bg="#059669" class="w-7 h-7 rounded-full bg-emerald-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
-                        <button data-bg="#fef3c7" class="w-7 h-7 rounded-full bg-amber-100 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
-                        <button data-bg="#fce7f3" class="w-7 h-7 rounded-full bg-pink-100 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
-                        <button data-bg="#f0f9ff" class="w-7 h-7 rounded-full bg-sky-50 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+            <div class="section-body space-y-3 pb-4">
+                <!-- BG Mode toggle -->
+                <div>
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1.5">MODO</span>
+                    <div class="flex gap-1 bg-slate-50 p-1 rounded-xl border border-slate-100">
+                        <button id="bgModeSolid" class="ctrl-btn active flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center">Sólido</button>
+                        <button id="bgModeGradient" class="ctrl-btn flex-1 px-3 py-2 rounded-lg text-[11px] font-bold text-center flex items-center justify-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-r from-blue-500 to-pink-500 inline-block shrink-0"></span> Gradiente
+                        </button>
+                    </div>
+                </div>
+                <!-- Solid controls -->
+                <div id="bgSolidControls">
+                    <div class="flex items-center gap-2">
+                        <input type="color" id="bgColorPicker" value="#ffffff" class="w-10 h-9 cursor-pointer shadow-sm border-2 border-white rounded-xl">
+                        <div class="flex gap-1.5" id="bgPresets">
+                            <button data-bg="#ffffff" class="w-7 h-7 rounded-full bg-white border-2 border-slate-200 shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-bg="#0f172a" class="w-7 h-7 rounded-full bg-slate-900 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-bg="#7c3aed" class="w-7 h-7 rounded-full bg-violet-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-bg="#059669" class="w-7 h-7 rounded-full bg-emerald-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-bg="#fef3c7" class="w-7 h-7 rounded-full bg-amber-100 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-bg="#fce7f3" class="w-7 h-7 rounded-full bg-pink-100 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                            <button data-bg="#f0f9ff" class="w-7 h-7 rounded-full bg-sky-50 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gradient controls -->
+                <div id="bgGradientControls" class="hidden space-y-2">
+                    <span class="text-[10px] font-bold text-slate-400 block mb-1">COLORES</span>
+                    <div class="flex items-center gap-2">
+                        <input type="color" id="bgGradStart" value="#667eea" class="w-9 h-8 cursor-pointer shadow-sm border-2 border-white rounded-lg">
+                        <span class="text-[9px] text-slate-400">→</span>
+                        <input type="color" id="bgGradEnd" value="#764ba2" class="w-9 h-8 cursor-pointer shadow-sm border-2 border-white rounded-lg">
+                        <div class="flex-1 h-6 rounded-lg" id="bgGradPreview" style="background:linear-gradient(135deg,#667eea,#764ba2)"></div>
+                    </div>
+                    <!-- Direction -->
+                    <div class="flex gap-1" id="bgGradDirection">
+                        <button data-dir="to right" class="ctrl-btn flex-1 px-1.5 py-1.5 rounded-lg text-[10px] font-bold border border-slate-200 text-center">→</button>
+                        <button data-dir="to bottom" class="ctrl-btn flex-1 px-1.5 py-1.5 rounded-lg text-[10px] font-bold border border-slate-200 text-center">↓</button>
+                        <button data-dir="135deg" class="ctrl-btn active flex-1 px-1.5 py-1.5 rounded-lg text-[10px] font-bold border border-slate-200 text-center">↘</button>
+                        <button data-dir="to top" class="ctrl-btn flex-1 px-1.5 py-1.5 rounded-lg text-[10px] font-bold border border-slate-200 text-center">↑</button>
+                        <button data-dir="45deg" class="ctrl-btn flex-1 px-1.5 py-1.5 rounded-lg text-[10px] font-bold border border-slate-200 text-center">↗</button>
+                    </div>
+                    <!-- Gradient presets -->
+                    <div class="flex gap-1.5" id="bgGradPresets">
+                        <button data-gbs="#667eea" data-gbe="#764ba2" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(135deg,#667eea,#764ba2)"></button>
+                        <button data-gbs="#f093fb" data-gbe="#f5576c" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(135deg,#f093fb,#f5576c)"></button>
+                        <button data-gbs="#4facfe" data-gbe="#00f2fe" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"></button>
+                        <button data-gbs="#43e97b" data-gbe="#38f9d7" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"></button>
+                        <button data-gbs="#0f172a" data-gbe="#1e293b" class="flex-1 h-6 rounded-lg cursor-pointer hover:scale-105 transition-transform border border-white shadow-sm" style="background:linear-gradient(135deg,#0f172a,#1e293b)"></button>
                     </div>
                 </div>
             </div>
         </details>
 
+        <!-- ═══ 12. FORMATO ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="ratio" class="w-4 h-4"></i> Formato / Aspect Ratio
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <div class="grid grid-cols-4 gap-1.5" id="aspectRatioSelector">
+                    <button data-ratio="9/16" class="ctrl-btn active px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-4 h-5 text-slate-500" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="1" width="12" height="22" rx="2"/></svg>
+                        9:16
+                    </button>
+                    <button data-ratio="16/9" class="ctrl-btn px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-5 h-4 text-slate-500" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2" width="22" height="12" rx="2"/></svg>
+                        16:9
+                    </button>
+                    <button data-ratio="1/1" class="ctrl-btn px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-4 h-4 text-slate-500" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="16" height="16" rx="2"/></svg>
+                        1:1
+                    </button>
+                    <button data-ratio="4/5" class="ctrl-btn px-2 py-2.5 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <svg class="w-4 h-5 text-slate-500" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="1" width="12" height="18" rx="2"/></svg>
+                        4:5
+                    </button>
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 13. MARCO DEL DISPOSITIVO ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="smartphone" class="w-4 h-4"></i> Marco del Dispositivo
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <div class="flex gap-2" id="frameColorSelector">
+                    <button data-frame="#1a1a1a" class="ctrl-btn active w-10 h-10 rounded-xl border-2 border-slate-200 bg-[#1a1a1a] shadow-sm hover:scale-105 transition-transform" title="Negro"></button>
+                    <button data-frame="#e2e8f0" class="ctrl-btn w-10 h-10 rounded-xl border-2 border-slate-200 bg-[#e2e8f0] shadow-sm hover:scale-105 transition-transform" title="Plata"></button>
+                    <button data-frame="#d4a574" class="ctrl-btn w-10 h-10 rounded-xl border-2 border-slate-200 bg-[#d4a574] shadow-sm hover:scale-105 transition-transform" title="Oro"></button>
+                    <button data-frame="#1e3a5f" class="ctrl-btn w-10 h-10 rounded-xl border-2 border-slate-200 bg-[#1e3a5f] shadow-sm hover:scale-105 transition-transform" title="Azul"></button>
+                    <button data-frame="#4a1942" class="ctrl-btn w-10 h-10 rounded-xl border-2 border-slate-200 bg-[#4a1942] shadow-sm hover:scale-105 transition-transform" title="Morado"></button>
+                    <button data-frame="#2d4a3e" class="ctrl-btn w-10 h-10 rounded-xl border-2 border-slate-200 bg-[#2d4a3e] shadow-sm hover:scale-105 transition-transform" title="Verde"></button>
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 14. FONDO CON IMAGEN ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="image-plus" class="w-4 h-4"></i> Imagen de Fondo
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-3 pb-4">
+                <label class="cursor-pointer group block">
+                    <input type="file" id="bgImageInput" accept="image/*" class="hidden">
+                    <div class="border-2 border-dashed border-slate-200 rounded-2xl p-3 group-hover:bg-blue-50 group-hover:border-blue-300 transition-all text-center bg-slate-50/50">
+                        <i data-lucide="upload" class="mx-auto text-slate-300 group-hover:text-blue-500 mb-1 w-4 h-4"></i>
+                        <span class="text-[11px] font-bold text-slate-500 group-hover:text-blue-600">SUBIR FONDO</span>
+                    </div>
+                </label>
+                <button id="removeBgImageBtn" class="hidden w-full py-2 bg-rose-50 text-rose-600 rounded-xl font-bold text-[11px] flex items-center justify-center gap-2 hover:bg-rose-100 transition-all border border-rose-200">
+                    <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> QUITAR FONDO
+                </button>
+                <div id="bgImageControls" class="hidden space-y-1.5">
+                    <div class="space-y-1">
+                        <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">OPACIDAD</span><span id="bgImgOpacityVal" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">100%</span></div>
+                        <input type="range" id="bgImgOpacitySlider" min="10" max="100" value="100" class="w-full">
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">BLUR</span><span id="bgImgBlurVal" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">0px</span></div>
+                        <input type="range" id="bgImgBlurSlider" min="0" max="30" value="0" class="w-full">
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 15. SOMBRA DEL DISPOSITIVO ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="layers" class="w-4 h-4"></i> Sombra del Dispositivo
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-1.5 pb-4">
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">INTENSIDAD</span><span id="shadowIntensityVal" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">30%</span></div>
+                    <input type="range" id="shadowIntensitySlider" min="0" max="80" value="30" class="w-full">
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">BLUR</span><span id="shadowBlurVal" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">50px</span></div>
+                    <input type="range" id="shadowBlurSlider" min="0" max="100" value="50" class="w-full">
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span class="text-[10px] font-bold text-slate-400">OFFSET Y</span><span id="shadowOffsetVal" class="text-[10px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">20px</span></div>
+                    <input type="range" id="shadowOffsetSlider" min="-20" max="60" value="20" class="w-full">
+                </div>
+            </div>
+        </details>
+
+        <!-- ═══ 16. APP ICON ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="app-window" class="w-4 h-4"></i> App Icon & Nombre
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-2 pb-4">
+                <label class="cursor-pointer group block">
+                    <input type="file" id="appIconInput" accept="image/*" class="hidden">
+                    <div class="border-2 border-dashed border-slate-200 rounded-2xl p-3 group-hover:bg-blue-50 group-hover:border-blue-300 transition-all text-center bg-slate-50/50 flex items-center justify-center gap-3">
+                        <div id="appIconPreview" class="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center overflow-hidden shrink-0">
+                            <i data-lucide="image" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-500 group-hover:text-blue-600">Subir ícono</span>
+                    </div>
+                </label>
+                <input id="appNameInput" type="text" class="w-full p-2.5 border-2 border-slate-100 rounded-xl focus:border-blue-500 outline-none transition-all text-center bg-slate-50 text-xs font-bold" placeholder="Nombre de la app" value="">
+            </div>
+        </details>
+
+        <!-- ═══ 17. TEMPLATES ═══ -->
+        <details class="group">
+            <summary class="section-header flex items-center gap-2 py-2.5 px-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600">
+                <i data-lucide="palette" class="w-4 h-4"></i> Templates
+                <i data-lucide="chevron-down" class="w-3 h-3 ml-auto transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="section-body space-y-1.5 pb-4">
+                <div class="grid grid-cols-3 gap-1.5" id="templateSelector">
+                    <button data-tpl="minimal" class="ctrl-btn px-2 py-3 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <div class="w-8 h-8 rounded-lg bg-white border border-slate-200"></div>
+                        Minimal
+                    </button>
+                    <button data-tpl="gradient" class="ctrl-btn px-2 py-3 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                        Gradiente
+                    </button>
+                    <button data-tpl="dark" class="ctrl-btn px-2 py-3 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <div class="w-8 h-8 rounded-lg bg-slate-900"></div>
+                        Dark
+                    </button>
+                    <button data-tpl="colorful" class="ctrl-btn px-2 py-3 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 via-rose-500 to-fuchsia-600"></div>
+                        Colorful
+                    </button>
+                    <button data-tpl="elegant" class="ctrl-btn px-2 py-3 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-b from-gray-100 to-gray-300"></div>
+                        Elegante
+                    </button>
+                    <button data-tpl="nature" class="ctrl-btn px-2 py-3 rounded-xl text-[10px] font-bold border border-slate-200 text-center flex flex-col items-center gap-1">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500"></div>
+                        Nature
+                    </button>
+                </div>
+            </div>
+        </details>
+
         <!-- EXPORT -->
-        <button id="downloadBtn"
-            class="mt-4 w-full py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all active:scale-[0.97] shadow-xl shadow-slate-200 shrink-0">
-            <i data-lucide="download" class="w-5 h-5"></i> Exportar Diseño
-        </button>
+        <div class="mt-3 space-y-2 shrink-0">
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold text-slate-400">RESOLUCIÓN</span>
+                <div class="flex gap-1 bg-slate-50 p-0.5 rounded-lg border border-slate-100 flex-1" id="exportResSelector">
+                    <button data-res="1" class="ctrl-btn flex-1 px-2 py-1 rounded-md text-[10px] font-bold text-center">1x</button>
+                    <button data-res="2" class="ctrl-btn active flex-1 px-2 py-1 rounded-md text-[10px] font-bold text-center">2x</button>
+                    <button data-res="3" class="ctrl-btn flex-1 px-2 py-1 rounded-md text-[10px] font-bold text-center">3x</button>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button id="downloadBtn"
+                    class="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-black transition-all active:scale-[0.97] shadow-xl shadow-slate-200">
+                    <i data-lucide="download" class="w-5 h-5"></i> Exportar
+                </button>
+                <button id="copyClipboardBtn"
+                    class="py-4 px-5 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all active:scale-[0.97] shadow-xl shadow-blue-200"
+                    title="Copiar al portapapeles">
+                    <i data-lucide="clipboard-copy" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
     </aside>
 
     <!-- ═══════════════════════════════════════════ -->
@@ -435,6 +675,15 @@
         <div id="mockupContainer"
             class="relative bg-white aspect-[9/16] h-[min(85vh,800px)] flex flex-col items-center justify-center rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] z-10 transition-all duration-500 overflow-hidden p-8"
             data-layout="top">
+
+            <!-- BG Image layer -->
+            <div id="bgImageLayer" class="absolute inset-0 bg-cover bg-center pointer-events-none hidden z-0" style="opacity:1;filter:blur(0px)"></div>
+
+            <!-- ═══ APP ICON BAR ═══ -->
+            <div id="appIconBar" class="hidden items-center gap-3 mb-3 order-0 z-10">
+                <img id="appIconDisplay" src="" alt="App Icon" class="w-10 h-10 rounded-xl shadow-sm object-cover">
+                <span id="appNameDisplay" class="text-sm font-bold text-slate-700"></span>
+            </div>
 
             <!-- ═══ TEXT ZONE (top/bottom position) ═══ -->
             <div id="textZone" class="text-center mb-12 select-none max-w-lg w-full order-1">
@@ -466,8 +715,8 @@
 
                     <!-- Aura -->
                     <div id="auraEffect"
-                        class="absolute -inset-16 blur-[80px] opacity-20 transition-all duration-300 pointer-events-none"
-                        style="background: radial-gradient(circle, #4285F4, #EA4335, #FBBC05, transparent);"></div>
+                        class="absolute transition-all duration-300 pointer-events-none"
+                        style="inset: -23px; filter: blur(20px); opacity: 0.17; background: radial-gradient(circle, #4285F4, #EA4335, #FBBC05, transparent);"></div>
 
                     <!-- Border (outer gradient frame) -->
                     <div id="deviceBorder"
@@ -550,6 +799,7 @@
 
     const fontWeightSlider = $('fontWeightSlider');
     const letterSpacingSlider = $('letterSpacingSlider');
+    const lineHeightSlider = $('lineHeightSlider');
 
     // ═══ TEXT ═══
     function updateText() {
@@ -564,6 +814,7 @@
         displayTitle.style.fontStyle = isItalic ? 'italic' : 'normal';
         displayTitle.style.textTransform = isUppercase ? 'uppercase' : 'none';
         displayTitle.style.letterSpacing = `${letterSpacing}px`;
+        displayTitle.style.lineHeight = (lineHeightSlider.value / 100).toFixed(2);
         displayTitle.style.textAlign = currentAlign;
 
         displayTitle.innerHTML = lines.map((line, idx) => {
@@ -580,6 +831,7 @@
         $('fontSizeValue').textContent = `${fontSize}px`;
         $('fontWeightValue').textContent = fontWeight;
         $('letterSpacingValue').textContent = `${letterSpacing}px`;
+        $('lineHeightValue').textContent = (lineHeightSlider.value / 100).toFixed(2);
 
         renderLineSelector();
     }
@@ -689,6 +941,7 @@
         updateText();
     });
     letterSpacingSlider.addEventListener('input', updateText);
+    lineHeightSlider.addEventListener('input', updateText);
 
     // ═══ SUBTITLE ═══
     function updateSubtitle() {
@@ -766,7 +1019,12 @@
 
     function applyLayout() {
         // Reset classes — keep 9:16 aspect ratio
-        mockupContainer.className = 'relative bg-white aspect-[9/16] h-[min(85vh,800px)] flex items-center justify-center rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] z-10 transition-all duration-500 overflow-hidden p-8';
+        mockupContainer.className = 'relative bg-white flex items-center justify-center rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] z-10 transition-all duration-500 overflow-hidden p-8';
+        mockupContainer.style.aspectRatio = currentRatio;
+        if (currentRatio === '9/16') mockupContainer.style.height = 'min(85vh,800px)';
+        else if (currentRatio === '16/9') mockupContainer.style.height = 'min(55vh,450px)';
+        else if (currentRatio === '1/1') mockupContainer.style.height = 'min(70vh,600px)';
+        else if (currentRatio === '4/5') mockupContainer.style.height = 'min(80vh,750px)';
 
         textZone.className = 'select-none w-full';
         textZone.style.textAlign = currentAlign;
@@ -804,8 +1062,8 @@
                 deviceZone.style.maxWidth = '220px';
                 break;
         }
-        // Re-apply bg color
-        mockupContainer.style.backgroundColor = bgColorPicker.value;
+        // Re-apply bg
+        applyBgColor();
     }
 
     // ═══ ROTATION ═══
@@ -921,36 +1179,274 @@
     });
 
     // ═══ BG COLOR ═══
-    bgColorPicker.addEventListener('input', (e) => { mockupContainer.style.backgroundColor = e.target.value; });
+    let bgMode = 'solid'; // 'solid' | 'gradient'
+    let bgGradStart = '#667eea';
+    let bgGradEnd = '#764ba2';
+    let bgGradDir = '135deg';
+    let currentFrameColor = '#1a1a1a';
+    const phoneBody = document.querySelector('#deviceBorder > div');
+
+    function applyBgColor() {
+        if (bgMode === 'solid') {
+            mockupContainer.style.background = bgColorPicker.value;
+        } else {
+            mockupContainer.style.background = `linear-gradient(${bgGradDir}, ${bgGradStart}, ${bgGradEnd})`;
+        }
+    }
+    function updateBgGradPreview() {
+        $('bgGradPreview').style.background = `linear-gradient(${bgGradDir}, ${bgGradStart}, ${bgGradEnd})`;
+    }
+
+    bgColorPicker.addEventListener('input', (e) => { applyBgColor(); });
     $('bgPresets').addEventListener('click', (e) => {
         const btn = e.target.closest('[data-bg]');
         if (!btn) return;
-        mockupContainer.style.backgroundColor = btn.dataset.bg;
         bgColorPicker.value = btn.dataset.bg;
+        applyBgColor();
     });
 
-    // ═══ EXPORT ═══
-    downloadBtn.addEventListener('click', async () => {
+    // BG mode toggle
+    $('bgModeSolid').addEventListener('click', () => {
+        bgMode = 'solid';
+        $('bgModeSolid').classList.add('active'); $('bgModeGradient').classList.remove('active');
+        $('bgSolidControls').classList.remove('hidden'); $('bgGradientControls').classList.add('hidden');
+        applyBgColor();
+    });
+    $('bgModeGradient').addEventListener('click', () => {
+        bgMode = 'gradient';
+        $('bgModeGradient').classList.add('active'); $('bgModeSolid').classList.remove('active');
+        $('bgGradientControls').classList.remove('hidden'); $('bgSolidControls').classList.add('hidden');
+        applyBgColor();
+    });
+
+    // BG gradient color pickers
+    $('bgGradStart').addEventListener('input', (e) => { bgGradStart = e.target.value; updateBgGradPreview(); applyBgColor(); });
+    $('bgGradEnd').addEventListener('input', (e) => { bgGradEnd = e.target.value; updateBgGradPreview(); applyBgColor(); });
+
+    // BG gradient direction
+    $('bgGradDirection').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-dir]');
+        if (!btn) return;
+        bgGradDir = btn.dataset.dir;
+        document.querySelectorAll('#bgGradDirection .ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateBgGradPreview(); applyBgColor();
+    });
+
+    // BG gradient presets
+    $('bgGradPresets').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-gbs]');
+        if (!btn) return;
+        bgGradStart = btn.dataset.gbs; bgGradEnd = btn.dataset.gbe;
+        $('bgGradStart').value = bgGradStart; $('bgGradEnd').value = bgGradEnd;
+        updateBgGradPreview(); applyBgColor();
+    });
+
+    // ═══ ASPECT RATIO ═══
+    let currentRatio = '9/16';
+    $('aspectRatioSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-ratio]');
+        if (!btn) return;
+        currentRatio = btn.dataset.ratio;
+        document.querySelectorAll('#aspectRatioSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyLayout();
+    });
+
+    // ═══ FRAME COLOR ═══
+    $('frameColorSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-frame]');
+        if (!btn) return;
+        currentFrameColor = btn.dataset.frame;
+        document.querySelectorAll('#frameColorSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (phoneBody) phoneBody.style.backgroundColor = currentFrameColor;
+    });
+
+    // ═══ BACKGROUND IMAGE ═══
+    const bgImageLayer = $('bgImageLayer');
+    $('bgImageInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                bgImageLayer.style.backgroundImage = `url(${ev.target.result})`;
+                bgImageLayer.classList.remove('hidden');
+                $('removeBgImageBtn').classList.remove('hidden'); $('removeBgImageBtn').classList.add('flex');
+                $('bgImageControls').classList.remove('hidden');
+                lucide.createIcons();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    $('removeBgImageBtn').addEventListener('click', () => {
+        bgImageLayer.style.backgroundImage = ''; bgImageLayer.classList.add('hidden');
+        $('bgImageInput').value = '';
+        $('removeBgImageBtn').classList.add('hidden'); $('removeBgImageBtn').classList.remove('flex');
+        $('bgImageControls').classList.add('hidden');
+        $('bgImgOpacitySlider').value = 100; $('bgImgBlurSlider').value = 0;
+        $('bgImgOpacityVal').textContent = '100%'; $('bgImgBlurVal').textContent = '0px';
+    });
+    $('bgImgOpacitySlider').addEventListener('input', (e) => {
+        bgImageLayer.style.opacity = e.target.value / 100;
+        $('bgImgOpacityVal').textContent = `${e.target.value}%`;
+    });
+    $('bgImgBlurSlider').addEventListener('input', (e) => {
+        bgImageLayer.style.filter = `blur(${e.target.value}px)`;
+        $('bgImgBlurVal').textContent = `${e.target.value}px`;
+    });
+
+    // ═══ DEVICE SHADOW ═══
+    function updateDeviceShadow() {
+        const intensity = $('shadowIntensitySlider').value / 100;
+        const blur = $('shadowBlurSlider').value;
+        const offset = $('shadowOffsetSlider').value;
+        deviceBorder.style.boxShadow = `0 ${offset}px ${blur}px -10px rgba(0,0,0,${intensity})`;
+        $('shadowIntensityVal').textContent = `${$('shadowIntensitySlider').value}%`;
+        $('shadowBlurVal').textContent = `${blur}px`;
+        $('shadowOffsetVal').textContent = `${offset}px`;
+    }
+    $('shadowIntensitySlider').addEventListener('input', updateDeviceShadow);
+    $('shadowBlurSlider').addEventListener('input', updateDeviceShadow);
+    $('shadowOffsetSlider').addEventListener('input', updateDeviceShadow);
+
+    // ═══ APP ICON ═══
+    const appIconBar = $('appIconBar');
+    const appIconDisplay = $('appIconDisplay');
+    const appNameDisplay = $('appNameDisplay');
+    let appIconSrc = '';
+
+    $('appIconInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                appIconSrc = ev.target.result;
+                appIconDisplay.src = appIconSrc;
+                $('appIconPreview').innerHTML = `<img src="${appIconSrc}" class="w-full h-full object-cover">`;
+                updateAppIconBar();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    $('appNameInput').addEventListener('input', updateAppIconBar);
+    function updateAppIconBar() {
+        const name = $('appNameInput').value.trim();
+        if (appIconSrc || name) {
+            appIconBar.classList.remove('hidden'); appIconBar.classList.add('flex');
+            appIconDisplay.src = appIconSrc || '';
+            appIconDisplay.style.display = appIconSrc ? 'block' : 'none';
+            appNameDisplay.textContent = name;
+            appNameDisplay.style.color = currentTitleColor;
+            appNameDisplay.style.fontFamily = `'${currentFont}', sans-serif`;
+        } else {
+            appIconBar.classList.add('hidden'); appIconBar.classList.remove('flex');
+        }
+    }
+
+    // ═══ TEMPLATES ═══
+    const templates = {
+        minimal: { bg:'solid', bgColor:'#ffffff', textColor:'#0f172a', font:'Inter', aura:['#e2e8f0','#cbd5e1','#94a3b8','#64748b'], frameColor:'#1a1a1a', auraOp:10, auraBlur:60, auraSz:40 },
+        gradient: { bg:'gradient', bgGs:'#667eea', bgGe:'#764ba2', textColor:'#ffffff', font:'Outfit', aura:['#a78bfa','#818cf8','#6366f1','#4f46e5'], frameColor:'#1a1a1a', auraOp:25, auraBlur:40, auraSz:50 },
+        dark: { bg:'solid', bgColor:'#0f172a', textColor:'#f8fafc', font:'Space Grotesk', aura:['#3b82f6','#8b5cf6','#ec4899','#f59e0b'], frameColor:'#1a1a1a', auraOp:30, auraBlur:50, auraSz:60 },
+        colorful: { bg:'gradient', bgGs:'#f59e0b', bgGe:'#ec4899', textColor:'#ffffff', font:'Sora', aura:['#fbbf24','#f472b6','#a78bfa','#34d399'], frameColor:'#1a1a1a', auraOp:20, auraBlur:30, auraSz:45 },
+        elegant: { bg:'gradient', bgGs:'#f5f5f4', bgGe:'#d6d3d1', textColor:'#1c1917', font:'Playfair Display', aura:['#d4a574','#b08968','#9c6644','#7c5733'], frameColor:'#d4a574', auraOp:15, auraBlur:70, auraSz:50 },
+        nature: { bg:'gradient', bgGs:'#065f46', bgGe:'#064e3b', textColor:'#ecfdf5', font:'DM Sans', aura:['#34d399','#10b981','#059669','#047857'], frameColor:'#1a1a1a', auraOp:25, auraBlur:50, auraSz:55 },
+    };
+    $('templateSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-tpl]');
+        if (!btn) return;
+        const t = templates[btn.dataset.tpl];
+        if (!t) return;
+        // Apply bg
+        if (t.bg === 'solid') {
+            bgMode = 'solid'; bgColorPicker.value = t.bgColor;
+            $('bgModeSolid').classList.add('active'); $('bgModeGradient').classList.remove('active');
+            $('bgSolidControls').classList.remove('hidden'); $('bgGradientControls').classList.add('hidden');
+        } else {
+            bgMode = 'gradient'; bgGradStart = t.bgGs; bgGradEnd = t.bgGe;
+            $('bgGradStart').value = bgGradStart; $('bgGradEnd').value = bgGradEnd;
+            $('bgModeGradient').classList.add('active'); $('bgModeSolid').classList.remove('active');
+            $('bgGradientControls').classList.remove('hidden'); $('bgSolidControls').classList.add('hidden');
+            updateBgGradPreview();
+        }
+        applyBgColor();
+        // Text
+        currentTitleColor = t.textColor; titleColorPicker.value = t.textColor;
+        currentFont = t.font;
+        document.querySelectorAll('#fontSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        const fontBtn = document.querySelector(`[data-font="${t.font}"]`);
+        if (fontBtn) fontBtn.classList.add('active');
+        // Aura
+        t.aura.forEach((c, i) => { if (colorInputs[i]) colorInputs[i].value = c; });
+        auraOpacitySlider.value = t.auraOp; auraBlurSlider.value = t.auraBlur; auraSizeSlider.value = t.auraSz;
+        updateColors(); updateAura();
+        // Frame
+        currentFrameColor = t.frameColor; if (phoneBody) phoneBody.style.backgroundColor = t.frameColor;
+        document.querySelectorAll('#frameColorSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        const frameBtn = document.querySelector(`[data-frame="${t.frameColor}"]`);
+        if (frameBtn) frameBtn.classList.add('active');
+        // Text update
+        updateText(); updateSubtitle(); updateAppIconBar();
+    });
+
+    // ═══ TEXT SHADOW ═══
+    let txtShadowMode = 'none'; // 'none' | 'shadow' | 'glow'
+    function applyTextShadow() {
+        const blur = $('txtShadowBlurSlider').value;
+        const color = $('txtShadowColor').value;
+        if (txtShadowMode === 'none') {
+            displayTitle.style.textShadow = 'none';
+        } else if (txtShadowMode === 'shadow') {
+            displayTitle.style.textShadow = `2px 4px ${blur}px ${color}80`;
+        } else {
+            displayTitle.style.textShadow = `0 0 ${blur}px ${color}, 0 0 ${blur * 2}px ${color}60, 0 0 ${blur * 3}px ${color}30`;
+        }
+        $('txtShadowBlurVal').textContent = `${blur}px`;
+    }
+    $('txtShadowOff').addEventListener('click', () => {
+        txtShadowMode = 'none';
+        $('txtShadowOff').classList.add('active'); $('txtShadowOn').classList.remove('active'); $('txtGlowOn').classList.remove('active');
+        $('txtShadowControls').classList.add('hidden');
+        applyTextShadow();
+    });
+    $('txtShadowOn').addEventListener('click', () => {
+        txtShadowMode = 'shadow';
+        $('txtShadowOn').classList.add('active'); $('txtShadowOff').classList.remove('active'); $('txtGlowOn').classList.remove('active');
+        $('txtShadowControls').classList.remove('hidden');
+        applyTextShadow();
+    });
+    $('txtGlowOn').addEventListener('click', () => {
+        txtShadowMode = 'glow';
+        $('txtGlowOn').classList.add('active'); $('txtShadowOff').classList.remove('active'); $('txtShadowOn').classList.remove('active');
+        $('txtShadowControls').classList.remove('hidden');
+        $('txtShadowColor').value = '#ffffff';
+        applyTextShadow();
+    });
+    $('txtShadowBlurSlider').addEventListener('input', applyTextShadow);
+    $('txtShadowColor').addEventListener('input', applyTextShadow);
+
+    // ═══ EXPORT RESOLUTION ═══
+    let exportScale = 2;
+    $('exportResSelector').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-res]');
+        if (!btn) return;
+        exportScale = parseInt(btn.dataset.res);
+        document.querySelectorAll('#exportResSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+    async function doExport() {
         const orig = downloadBtn.innerHTML;
         downloadBtn.disabled = true;
         downloadBtn.innerHTML = `<div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Exportando...`;
-
-        // Save current states that break export
-        const savedTransform = deviceWrapper.style.transform;
         const savedOverflow = mockupContainer.style.overflow;
-
         try {
-            // Temporarily adjust for clean capture
             mockupContainer.style.overflow = 'hidden';
-
             const dataUrl = await domtoimage.toPng(mockupContainer, {
                 quality: 1,
-                width: mockupContainer.offsetWidth * 2,
-                height: mockupContainer.offsetHeight * 2,
-                style: {
-                    transform: 'scale(2)',
-                    transformOrigin: 'top left',
-                },
+                width: mockupContainer.offsetWidth * exportScale,
+                height: mockupContainer.offsetHeight * exportScale,
+                style: { transform: `scale(${exportScale})`, transformOrigin: 'top left' },
             });
             const link = document.createElement('a');
             link.download = `mockup-${Date.now()}.png`;
@@ -960,11 +1456,55 @@
             console.error('Export error:', err);
             alert('Error al exportar. Intenta de nuevo.');
         } finally {
-            // Restore
             mockupContainer.style.overflow = savedOverflow;
             downloadBtn.disabled = false;
             downloadBtn.innerHTML = orig;
             lucide.createIcons();
+        }
+    }
+    downloadBtn.addEventListener('click', doExport);
+
+    // ═══ COPY TO CLIPBOARD ═══
+    $('copyClipboardBtn').addEventListener('click', async () => {
+        const copyBtn = $('copyClipboardBtn');
+        const origHTML = copyBtn.innerHTML;
+        copyBtn.disabled = true;
+        copyBtn.innerHTML = `<div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>`;
+        try {
+            const savedOverflow = mockupContainer.style.overflow;
+            mockupContainer.style.overflow = 'hidden';
+            const dataUrl = await domtoimage.toPng(mockupContainer, {
+                quality: 1,
+                width: mockupContainer.offsetWidth * exportScale,
+                height: mockupContainer.offsetHeight * exportScale,
+                style: { transform: `scale(${exportScale})`, transformOrigin: 'top left' },
+            });
+            mockupContainer.style.overflow = savedOverflow;
+            const resp = await fetch(dataUrl);
+            const blob = await resp.blob();
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+            copyBtn.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+            lucide.createIcons();
+            setTimeout(() => { copyBtn.innerHTML = origHTML; lucide.createIcons(); }, 1500);
+        } catch (err) {
+            console.error('Copy error:', err);
+            copyBtn.innerHTML = `<i data-lucide="x" class="w-5 h-5"></i>`;
+            lucide.createIcons();
+            setTimeout(() => { copyBtn.innerHTML = origHTML; lucide.createIcons(); }, 1500);
+        } finally {
+            copyBtn.disabled = false;
+        }
+    });
+
+    // ═══ KEYBOARD SHORTCUTS ═══
+    document.addEventListener('keydown', (e) => {
+        // Ctrl+S = Export
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault(); doExport();
+        }
+        // Ctrl+Shift+C = Copy to clipboard
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+            e.preventDefault(); $('copyClipboardBtn').click();
         }
     });
 
@@ -993,8 +1533,19 @@
         removeImageBtn.classList.add('hidden'); removeImageBtn.classList.remove('flex');
         const dc = ['#4285F4','#EA4335','#FBBC05','#34A853'];
         colorInputs.forEach((i,idx) => i.value = dc[idx]);
-        auraOpacitySlider.value = 20; auraBlurSlider.value = 80; auraSizeSlider.value = 64;
+        auraOpacitySlider.value = 17; auraBlurSlider.value = 20; auraSizeSlider.value = 23;
         bgColorPicker.value = '#ffffff';
+        bgMode = 'solid'; bgGradStart = '#667eea'; bgGradEnd = '#764ba2'; bgGradDir = '135deg';
+        $('bgModeSolid').classList.add('active'); $('bgModeGradient').classList.remove('active');
+        $('bgSolidControls').classList.remove('hidden'); $('bgGradientControls').classList.add('hidden');
+        $('bgGradStart').value = '#667eea'; $('bgGradEnd').value = '#764ba2'; updateBgGradPreview();
+        currentRatio = '9/16';
+        document.querySelectorAll('#aspectRatioSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-ratio="9/16"]').classList.add('active');
+        currentFrameColor = '#1a1a1a'; if (phoneBody) phoneBody.style.backgroundColor = '#1a1a1a';
+        document.querySelectorAll('#frameColorSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-frame="#1a1a1a"]').classList.add('active');
+        lineHeightSlider.value = 105;
 
         document.querySelectorAll('#fontSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
         document.querySelector('[data-font="Inter"]').classList.add('active');
@@ -1004,7 +1555,28 @@
         document.querySelector('[data-position="top"]').classList.add('active');
 
         updateText(); updateSubtitle(); updateBadge(); updateReview(); updateStarsDisplay();
-        updateColors(); updateAura(); updateRotation(); applyLayout();
+        updateColors(); updateAura(); updateRotation(); applyLayout(); applyBgColor(); updateDeviceShadow();
+        // Reset bg image
+        bgImageLayer.style.backgroundImage = ''; bgImageLayer.classList.add('hidden');
+        $('bgImageInput').value = ''; $('removeBgImageBtn').classList.add('hidden');
+        $('bgImageControls').classList.add('hidden');
+        $('bgImgOpacitySlider').value = 100; $('bgImgBlurSlider').value = 0;
+        // Reset shadow
+        $('shadowIntensitySlider').value = 30; $('shadowBlurSlider').value = 50; $('shadowOffsetSlider').value = 20;
+        // Reset app icon
+        appIconSrc = ''; $('appIconInput').value = ''; $('appNameInput').value = '';
+        appIconBar.classList.add('hidden'); appIconBar.classList.remove('flex');
+        $('appIconPreview').innerHTML = '<i data-lucide="image" class="w-4 h-4 text-slate-400"></i>';
+        // Reset text shadow
+        txtShadowMode = 'none'; $('txtShadowOff').classList.add('active');
+        $('txtShadowOn').classList.remove('active'); $('txtGlowOn').classList.remove('active');
+        $('txtShadowControls').classList.add('hidden'); $('txtShadowBlurSlider').value = 4;
+        $('txtShadowColor').value = '#000000'; applyTextShadow();
+        // Reset export resolution
+        exportScale = 2;
+        document.querySelectorAll('#exportResSelector .ctrl-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-res="2"]').classList.add('active');
+        lucide.createIcons();
     });
 
     // ═══ INIT ═══
@@ -1016,6 +1588,8 @@
     updateRotation();
     updateStarsDisplay();
     applyLayout();
+    applyBgColor();
+    updateDeviceShadow();
 </script>
 </body>
 </html>
